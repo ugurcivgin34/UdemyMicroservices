@@ -20,6 +20,7 @@ namespace FreeCourse.IdentityServer
         new ApiResource("photo_stock_catalog"){Scopes={"photo_stock_fullpermission"}},
         new ApiResource("resource_basket"){Scopes={"basket_fullpermission"}},
         new ApiResource("resource_discount"){Scopes={"discount_fullpermission"}},
+        new ApiResource("resource_order"){Scopes={"order_fullpermission"}},
         // IdentityServer'ın yerel API'si için kaynak tanımlama
         new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
@@ -48,6 +49,7 @@ namespace FreeCourse.IdentityServer
             new ApiScope("photo_stock_fullpermission","Photo Stock API için full erişim"),
             new ApiScope("basket_fullpermission","Basket API için full erişim"),
             new ApiScope("discount_fullpermission","Discount API için full erişim"),
+            new ApiScope("order_fullpermission","Order API için full erişim"),
             // IdentityServer'ın yerel API'si için yetki tanımlama
             new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
             };
@@ -73,6 +75,7 @@ namespace FreeCourse.IdentityServer
                 AllowedGrantTypes= GrantTypes.ResourceOwnerPassword,
                 AllowedScopes={"basket_fullpermission", // Basket API için full erişim
                     "discount_fullpermission", // Discount API için full erişim
+                    "order_fullpermission",
                     IdentityServerConstants.StandardScopes.Email,  // Kullanıcının e-posta adresine erişim yetkisi
                     IdentityServerConstants.StandardScopes.OpenId, // OpenID Connect protokolü için zorunlu özellik
                     IdentityServerConstants.StandardScopes.Profile, // Kullanıcı profil bilgileri
