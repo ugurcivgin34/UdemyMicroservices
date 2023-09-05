@@ -1,0 +1,111 @@
+{
+  "Routes": [ //Bu anahtar altında, farklı hizmetlere yönlendirilecek rotaların listesi bulunmaktadır. Her bir rota, gelen istekleri belirli bir hizmete yönlendirmek için kullanılır.
+    {
+      "DownstreamPathTemplate": "/api/{everything}", //DownstreamPathTemplate": Bu, gelen isteğin nasıl yönlendirileceğini belirler. İstek yolu (path) şablonunu belirtir.
+      "DownstreamScheme": "http", //"DownstreamScheme": İsteklerin downstream (aşağı akış) hizmetine nasıl iletilmesi gerektiğini belirtir. Bu örnekte "http" olarak belirtilmiştir.
+      "DownstreamHostAndPorts": [ //"DownstreamHostAndPorts": Bu, downstream hizmetin hangi ana bilgisayarda ve portta çalıştığını belirtir.
+        {
+          "Host": "localhost",
+          "Port": 5011
+        }
+      ],
+      "UpstreamPathTemplate": "/services/catalog/{everything}", //"UpstreamPathTemplate": Bu, upstream (yukarı akış) isteğin nasıl yönlendirileceğini belirtir. Genellikle backend hizmetin istek yolunu belirtir.
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ], //"UpstreamHttpMethod": Yukarı akış isteğin hangi HTTP yöntemlerine (örneğin, Get, Post, Put, Delete) izin verdiğini belirtir.
+      "UpstreamScheme": "http", //UpstreamScheme": Yukarı akış isteğin hangi şema ile (örneğin, http veya https) gönderileceğini belirtir.
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationScheme",
+        "AllowedScopes": [ "catalog_fullpermission" ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5012
+        }
+      ],
+      "UpstreamPathTemplate": "/services/photostock/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationScheme",
+        "AllowedScopes": [ "photo_stock_fullpermission" ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5013
+        }
+      ],
+      "UpstreamPathTemplate": "/services/basket/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationScheme",
+        "AllowedScopes": [ "basket_fullpermission" ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5014
+        }
+      ],
+      "UpstreamPathTemplate": "/services/discount/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationScheme",
+        "AllowedScopes": [ "discount_fullpermission" ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5015
+        }
+      ],
+      "UpstreamPathTemplate": "/services/order/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationScheme",
+        "AllowedScopes": [ "order_fullpermission" ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5016
+        }
+      ],
+      "UpstreamPathTemplate": "/services/fakepayment/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "GatewayAuthenticationScheme",
+        "AllowedScopes": [ "payment_fullpermission" ]
+      }
+    }
+  ],
+  "GlobalConfiguration": { //"GlobalConfiguration": Bu bölüm, genel yapılandırma ayarlarını içerir.
+    "BaseUrl": "http://localhost:5000" //"BaseUrl": Bu, API geçidinin kendisi için temel URL'yi belirtir. Gelen istekler bu temel URL'ye yönlendirilir ve sonra uygun rotalara göre işlenir.
+  }
+}
+
+
